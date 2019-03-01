@@ -8,8 +8,26 @@ import java.util.List;
 
 public class ListOddToEven
 {
-  public static boolean go( List<Integer> ray )
+  public static int go( List<Integer> ray )
   {
-    return false;
+  	int oddPos = -1;
+  	int evenPos = -1;
+  	for(int i = 0, len = ray.size(); i < len; i++) {
+  		if(ray.get(i)%2 == 1) {
+  			oddPos = i;
+  			break;
+  		}
+  	}
+  	if(oddPos == -1)
+  		return -1;
+  	for(int i = ray.size()-1; i > oddPos; i--) {
+  		if(ray.get(i)%2 == 0) {
+  			evenPos = i;
+  			break;
+  		}
+  	}
+  	if(evenPos == -1)
+  		return -1;
+  	return(evenPos - oddPos);
   }
 }
