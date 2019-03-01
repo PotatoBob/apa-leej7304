@@ -12,15 +12,21 @@ public class WordSortTwo
 
 	public WordSortTwo(String sentence)
 	{
+		wordRay = sentence.split(" ");
+		sort();
 	}
 
 	public void sort()
 	{
+		Arrays.sort(wordRay);
 	}
 
 	public String toString()
 	{
 		String output="";
-		return output+"\n\n";
+		for(String s : wordRay) {
+			output += s + "\n";
+		}
+		return output+"\n";
 	}
 }
