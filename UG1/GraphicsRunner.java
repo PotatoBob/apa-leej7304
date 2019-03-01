@@ -7,6 +7,7 @@
 //Lab  -
 
 import javax.swing.JFrame;
+import java.awt.Color;
 
 public class GraphicsRunner extends JFrame
 {
@@ -19,8 +20,10 @@ public class GraphicsRunner extends JFrame
       
     setSize(WIDTH,HEIGHT);
     
-    getContentPane().add(new SmileyFace());
+    //getContentPane().add(new SmileyFace());
     //getContentPane().add(new BigHouse());
+    //getContentPane().add(new ShapePanel());
+    getContentPane().add(new Robot());
     //add other classes to run them 
     //BigHouse, Robot, or ShapePanel 
     

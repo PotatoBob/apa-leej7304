@@ -43,7 +43,8 @@ public class ShapePanel extends JPanel
 
 		//instantiate a Shape
 		//tell your shape to draw
-
+		Shape redRect = new Shape(300, 300, 150, 150, Color.RED);
+		redRect.draw(window);
 		//instantiate a Shape
 		//tell your shape to draw
 

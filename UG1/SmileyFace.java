@@ -9,8 +9,9 @@
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Canvas;
+import javax.swing.JFrame;
 
-public class SmileyFace extends Canvas
+public class SmileyFace extends JFrame
 {
    public SmileyFace()    //constructor - sets up the class
    {

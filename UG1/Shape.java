@@ -21,7 +21,10 @@ public class Shape
    public Shape(int x, int y, int wid, int ht, Color col)
    {
 		xPos = x;
-		//finish this constructor
+		yPos = y;
+		width = wid;
+		height = ht;
+		color = col;
    }
 
 
@@ -39,6 +42,36 @@ public class Shape
 
    //BONUS
    //add in set and get methods for all instance variables
+   public int getX() {
+   	return xPos;
+   }
+   public void setX(int x) {
+   	xPos = x;
+   }
+   public int getY() {
+   	return yPos;
+   }
+   public void setY(int y) {
+   	yPos = y;
+   }
+   public int getWidth() {
+   	return width;
+   }
+   public void setWidth(int w) {
+   	width = w;
+   }
+   public int getHeight() {
+   	return height;
+   }
+   public void setHeight(int h) {
+   	height = h;
+   }
+   public Color getColor() {
+   	return color;
+   }
+   public void setColor(Color col) {
+   	color = col;
+   }
 
    public String toString()
    {
