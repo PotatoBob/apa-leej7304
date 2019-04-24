@@ -99,17 +99,36 @@ public class Picture extends SimplePicture
     }
   }
 
-  public void grayscale()
+  public void grayscaleAverage()
   {
     Pixel[][] pixels = this.getPixels2D();
     for (Pixel[] rowArray : pixels)
     {
       for (Pixel pixelObj : rowArray)
       {
-        int avg = (pixelObj.getBlue()+pixelObj.getRed()+pixelObj.getGreen())/3;
-        pixelObj.setBlue(avg);
-        pixelObj.setRed(avg);
-        pixelObj.setGreen(avg);
+        pixelObj.setGrayAverage();
+      }
+    }
+  }
+  public void grayscaleLightness()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setGrayLightness();
+      }
+    }
+  }
+  public void grayscaleLuminosity()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setGrayLuminosity();
       }
     }
   }

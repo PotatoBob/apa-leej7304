@@ -72,7 +72,11 @@ public class PictureTester
   {
     Picture beach = new Picture("beach.jpg");
     beach.explore();
-    beach.grayscale();
+    beach.grayscaleAverage();
+    beach.explore(); beach = new Picture("beach.jpg");
+    beach.grayscaleLightness();
+    beach.explore(); beach = new Picture("beach.jpg");
+    beach.grayscaleLuminosity();
     beach.explore();
   }
 
@@ -122,8 +126,8 @@ public class PictureTester
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
-    //testGrayscale();
-    testFixUnderwater();
+    testGrayscale();
+    //testFixUnderwater();
     //testMirrorVertical();
     //testMirrorTemple();
     //testMirrorArms();

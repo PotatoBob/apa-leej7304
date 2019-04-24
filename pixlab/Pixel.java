@@ -210,7 +210,7 @@ public class Pixel
     
     return new Color(red,green,blue);
   }
-  
+
   /**
    * Method to set the pixel color to the passed in color object.
    * @param newColor the new color to use
@@ -257,6 +257,30 @@ public class Pixel
     return value;
   }
   
+  public void setGrayAverage()
+  {
+    int avg = (getBlue()+getRed()+getGreen())/3;
+    setBlue(avg);
+    setRed(avg);
+    setGreen(avg);
+  }
+  public void setGrayLightness()
+  {
+    int max = Math.max(getBlue(), Math.max(getRed(), getGreen()));
+    int min = Math.min(getBlue(), Math.min(getRed(), getGreen()));
+    int avg = (max+min)/2;
+    setBlue(avg);
+    setRed(avg);
+    setGreen(avg);
+  }
+  public void setGrayLuminosity()
+  {
+    int avg = (int) (0.0722*getBlue() + 0.2126*getRed() + 0.7152*getGreen());
+    setBlue(avg);
+    setRed(avg);
+    setGreen(avg);
+  }
+
   /**
    * Method to set the red to a new red value
    * @param value the new value to use
