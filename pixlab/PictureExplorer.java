@@ -806,9 +806,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
     smallPix.write("AadilRainbowSmall.jpg");*/
     //pix.explore();
 
-    Picture bigLens = new Picture("lenslarge.jpg");
-    Picture smallLens = bigLens.scale(0.2, 0.2);
-    smallLens.write("lenssmall.jpg");
+    Picture water = new Picture("water.jpg");
+    water.explore();
   }
   
 }
