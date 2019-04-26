@@ -530,27 +530,65 @@ public class Picture extends SimplePicture
 	/** Method to show large changes in color 
 	* @param edgeDist the distance for finding edges
 	*/
+	//edgeDetection checks bottom and right pixel
 	public void edgeDetection(int edgeDist)
 	{
-	Pixel leftPixel = null;
-	Pixel rightPixel = null;
-	Pixel[][] pixels = this.getPixels2D();
-	Color rightColor = null;
-	for (int row = 0; row < pixels.length; row++)
-	{
-	  for (int col = 0; 
-	       col < pixels[0].length-1; col++)
-	  {
-	    leftPixel = pixels[row][col];
-	    rightPixel = pixels[row][col+1];
-	    rightColor = rightPixel.getColor();
-	    if (leftPixel.colorDistance(rightColor) > 
-	        edgeDist)
-	      leftPixel.setColor(Color.BLACK);
-	    else
-	      leftPixel.setColor(Color.WHITE);
-	  }
+		Pixel firstPixel = null;
+		Pixel secPixel = null;
+		Pixel[][] pixels = this.getPixels2D();
+		Color secColor = null;
+		for (int row = 0; row < pixels.length-1; row++)
+		{
+			for (int col = 0; col < pixels[0].length-1; col++)
+			{
+				firstPixel = pixels[row][col];
+				secPixel = pixels[row][col+1];
+				secColor = secPixel.getColor();
+				if (firstPixel.colorDistance(secColor) > edgeDist)
+				{
+				  firstPixel.setColor(Color.BLACK);
+				  continue;
+				}
+				secPixel = pixels[row+1][col];
+				secColor = secPixel.getColor();
+				if (firstPixel.colorDistance(secColor) > edgeDist)
+				{
+				  firstPixel.setColor(Color.BLACK);
+				  continue;
+				}
+				firstPixel.setColor(Color.WHITE);
+			}
+		}
 	}
+	//edgeDetection2 checks diagonal bottom left and bottom right pixels
+	public void edgeDetection2(int edgeDist)
+	{
+		Pixel firstPixel = null;
+		Pixel secPixel = null;
+		Pixel[][] pixels = this.getPixels2D();
+		Color secColor = null;
+		for (int row = 0; row < pixels.length-1; row++)
+		{
+			for (int col = 1; col < pixels[0].length-1; col++)
+			{
+				firstPixel = pixels[row][col];
+				secPixel = pixels[row+1][col+1];
+				secColor = secPixel.getColor();
+				if (firstPixel.colorDistance(secColor) > edgeDist)
+				{
+				  firstPixel.setColor(Color.BLACK);
+				  continue;
+				}
+				secPixel = pixels[row+1][col-1];
+				secColor = secPixel.getColor();
+				if (firstPixel.colorDistance(secColor) > edgeDist)
+				{
+				  firstPixel.setColor(Color.BLACK);
+				  continue;
+				}
+				firstPixel.setColor(Color.WHITE);
+			}
+		}
 	}
 
 
