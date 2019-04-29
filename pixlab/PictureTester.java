@@ -58,6 +58,9 @@ public class PictureTester
     water.explore();
     water.fixUnderwater();
     water.explore();
+    water = new Picture("water.jpg");
+    water.fixUnderwater2();
+    water.explore();
   }
 
   public static void testNegate()
@@ -167,6 +170,15 @@ public class PictureTester
     swan.edgeDetection2(10);
     swan.explore();
   }
+  public static void testBlur(int x, int y, int w, int h, int n)
+  {
+
+    Picture redMoto = new Picture("redMotorcycle.jpg");
+    for(int i = 0; i < n; i++) {
+      redMoto.blur(x, y, w, h);
+    }
+    redMoto.explore();
+  }
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -194,7 +206,8 @@ public class PictureTester
     //testCollage2();
     //testCopy();
     //testEdgeDetection();
-    testEdgeDetection2();
+    //testEdgeDetection2();
+    testBlur(180,160,25,25,10);
     //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);

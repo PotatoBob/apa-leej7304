@@ -85,6 +85,28 @@ public class Picture extends SimplePicture
 
 	}
 
+	public void blur(int x, int y, int w, int h)
+	{
+		Pixel[][] pixelsOG = this.getPixels2D();
+		int redAvg, greenAvg, blueAvg = 0;
+		for(int i = 0; i < w; i++) {
+			for(int j = 0; j < h; j++) {
+				redAvg = (pixelsOG[x+i][y+j].getRed()+pixelsOG[x+i+1][y+j].getRed()+pixelsOG[x+i-1][y+j].getRed()+
+						pixelsOG[x+i][y+j-1].getRed()+pixelsOG[x+i+1][y+j-1].getRed()+pixelsOG[x+i-1][y+j-1].getRed()+
+						pixelsOG[x+i][y+j+1].getRed()+pixelsOG[x+i+1][y+j+1].getRed()+pixelsOG[x+i-1][y+j+1].getRed())/9;
+				greenAvg = (pixelsOG[x+i][y+j].getGreen()+pixelsOG[x+i+1][y+j].getGreen()+pixelsOG[x+i-1][y+j].getGreen()+
+						pixelsOG[x+i][y+j-1].getGreen()+pixelsOG[x+i+1][y+j-1].getGreen()+pixelsOG[x+i-1][y+j-1].getGreen()+
+						pixelsOG[x+i][y+j+1].getGreen()+pixelsOG[x+i+1][y+j+1].getGreen()+pixelsOG[x+i-1][y+j+1].getGreen())/9;
+				blueAvg = (pixelsOG[x+i][y+j].getBlue()+pixelsOG[x+i+1][y+j].getBlue()+pixelsOG[x+i-1][y+j].getBlue()+
+						pixelsOG[x+i][y+j-1].getBlue()+pixelsOG[x+i+1][y+j-1].getBlue()+pixelsOG[x+i-1][y+j-1].getBlue()+
+						pixelsOG[x+i][y+j+1].getBlue()+pixelsOG[x+i+1][y+j+1].getBlue()+pixelsOG[x+i-1][y+j+1].getBlue())/9;
+				pixelsOG[x+i][y+j].setRed(redAvg);
+				pixelsOG[x+i][y+j].setGreen(greenAvg);
+				pixelsOG[x+i][y+j].setBlue(blueAvg);
+			}
+		}
+	}
+
 	public void fixUnderwater()
 	{
 		Pixel[][] pixels = this.getPixels2D();
@@ -95,6 +117,37 @@ public class Picture extends SimplePicture
 		    pixelObj.setBlue((int)(pixelObj.getBlue()*1.25));
 		    pixelObj.setGreen((int)(pixelObj.getGreen()*0.4));
 		    pixelObj.setRed((int)(pixelObj.getRed()*2.4));
+		  }
+		}
+	}
+	public void fixUnderwater2()
+	{
+		Pixel[][] pixels = this.getPixels2D();
+		int blueAvg = 0;
+		int greenAvg = 0;
+		int redAvg = 0;
+		int totalCount = 0;
+		for (Pixel[] rowArray : pixels)
+		{
+		  for (Pixel pixelObj : rowArray)
+		  {
+		  	blueAvg += pixelObj.getBlue();
+		  	greenAvg += pixelObj.getGreen();
+		  	redAvg += pixelObj.getRed();
+		  	totalCount++;
+		  }
+		}
+		blueAvg /= totalCount;
+		greenAvg /= totalCount;
+		redAvg /= totalCount;
+		for (Pixel[] rowArray : pixels)
+		{
+		  for (Pixel pixelObj : rowArray)
+		  {
+		  	if(pixelObj.getBlue() > blueAvg) pixelObj.setBlue((int)(pixelObj.getBlue()*1.3));
+		  	if(pixelObj.getRed() > redAvg) pixelObj.setRed((int)(pixelObj.getRed()*2.6));
+		  	// if(pixelObj.getGreen() > greenAvg) pixelObj.setGreen((int)(pixelObj.getGreen()*0.4));
+		    pixelObj.setGreen((int)(pixelObj.getGreen()*0.4));
 		  }
 		}
 	}
