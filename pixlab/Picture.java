@@ -88,9 +88,12 @@ public class Picture extends SimplePicture
 	public void blur(int x, int y, int w, int h)
 	{
 		Pixel[][] pixelsOG = this.getPixels2D();
-		int redAvg, greenAvg, blueAvg = 0;
+		int redAvg, greenAvg, blueAvg, count = 0;
 		for(int i = 0; i < w; i++) {
 			for(int j = 0; j < h; j++) {
+				// if(x+i == 0) {
+				// 	redAvg += 
+				// }
 				redAvg = (pixelsOG[x+i][y+j].getRed()+pixelsOG[x+i+1][y+j].getRed()+pixelsOG[x+i-1][y+j].getRed()+
 						pixelsOG[x+i][y+j-1].getRed()+pixelsOG[x+i+1][y+j-1].getRed()+pixelsOG[x+i-1][y+j-1].getRed()+
 						pixelsOG[x+i][y+j+1].getRed()+pixelsOG[x+i+1][y+j+1].getRed()+pixelsOG[x+i-1][y+j+1].getRed())/9;
