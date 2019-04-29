@@ -88,24 +88,108 @@ public class Picture extends SimplePicture
 	public void blur(int x, int y, int w, int h)
 	{
 		Pixel[][] pixelsOG = this.getPixels2D();
-		int redAvg, greenAvg, blueAvg, count = 0;
+		Pixel[][] pixelsEdit = new Pixel[w][h];
+		int redAvg = 0, greenAvg = 0, blueAvg = 0, count = 1;
 		for(int i = 0; i < w; i++) {
 			for(int j = 0; j < h; j++) {
-				// if(x+i == 0) {
-				// 	redAvg += 
-				// }
-				redAvg = (pixelsOG[x+i][y+j].getRed()+pixelsOG[x+i+1][y+j].getRed()+pixelsOG[x+i-1][y+j].getRed()+
-						pixelsOG[x+i][y+j-1].getRed()+pixelsOG[x+i+1][y+j-1].getRed()+pixelsOG[x+i-1][y+j-1].getRed()+
-						pixelsOG[x+i][y+j+1].getRed()+pixelsOG[x+i+1][y+j+1].getRed()+pixelsOG[x+i-1][y+j+1].getRed())/9;
-				greenAvg = (pixelsOG[x+i][y+j].getGreen()+pixelsOG[x+i+1][y+j].getGreen()+pixelsOG[x+i-1][y+j].getGreen()+
-						pixelsOG[x+i][y+j-1].getGreen()+pixelsOG[x+i+1][y+j-1].getGreen()+pixelsOG[x+i-1][y+j-1].getGreen()+
-						pixelsOG[x+i][y+j+1].getGreen()+pixelsOG[x+i+1][y+j+1].getGreen()+pixelsOG[x+i-1][y+j+1].getGreen())/9;
-				blueAvg = (pixelsOG[x+i][y+j].getBlue()+pixelsOG[x+i+1][y+j].getBlue()+pixelsOG[x+i-1][y+j].getBlue()+
-						pixelsOG[x+i][y+j-1].getBlue()+pixelsOG[x+i+1][y+j-1].getBlue()+pixelsOG[x+i-1][y+j-1].getBlue()+
-						pixelsOG[x+i][y+j+1].getBlue()+pixelsOG[x+i+1][y+j+1].getBlue()+pixelsOG[x+i-1][y+j+1].getBlue())/9;
-				pixelsOG[x+i][y+j].setRed(redAvg);
-				pixelsOG[x+i][y+j].setGreen(greenAvg);
-				pixelsOG[x+i][y+j].setBlue(blueAvg);
+				pixelsEdit[i][j] = new Pixel(new SimplePicture(w, h), i, j);
+				if(x+i > 0) {
+					redAvg += pixelsOG[x+j-1][y+i].getRed();
+					greenAvg += pixelsOG[x+j-1][y+i].getGreen();
+					blueAvg += pixelsOG[x+j-1][y+i].getBlue();
+					// System.out.println(greenAvg);
+					count++;
+					if(y+j > 0) {
+						redAvg += pixelsOG[x+j-1][y+i-1].getRed();
+						greenAvg += pixelsOG[x+j-1][y+i-1].getGreen();
+						blueAvg += pixelsOG[x+j-1][y+i-1].getBlue();
+					// System.out.println(greenAvg);
+						count++;
+					}
+				}
+				if(y+j > 0) {
+					redAvg += pixelsOG[x+j][y+i-1].getRed();
+					greenAvg += pixelsOG[x+j][y+i-1].getGreen();
+					blueAvg += pixelsOG[x+j][y+i-1].getBlue();
+					// System.out.println(greenAvg);
+					count++;
+					if(x+i < this.getHeight()-1) {
+						redAvg += pixelsOG[x+j+1][y+i-1].getRed();
+						greenAvg += pixelsOG[x+j+1][y+i-1].getGreen();
+						blueAvg += pixelsOG[x+j+1][y+i-1].getBlue();
+					// System.out.println(greenAvg);
+						count++;
+					}
+				}
+				if(x+i < this.getHeight()-1) {
+					redAvg += pixelsOG[x+j+1][y+i].getRed();
+					greenAvg += pixelsOG[x+j+1][y+i].getGreen();
+					blueAvg += pixelsOG[x+j+1][y+i].getBlue();
+					// System.out.println(greenAvg);
+					count++;
+					if(y+j < this.getWidth()-1) {
+						redAvg += pixelsOG[x+j+1][y+i+1].getRed();
+						greenAvg += pixelsOG[x+j+1][y+i+1].getGreen();
+						blueAvg += pixelsOG[x+j+1][y+i+1].getBlue();
+					// System.out.println(greenAvg);
+						count++;
+					}
+				}
+				if(y+j < this.getWidth()-1) {
+					redAvg += pixelsOG[x+j][y+i+1].getRed();
+					greenAvg += pixelsOG[x+j][y+i+1].getGreen();
+					blueAvg += pixelsOG[x+j][y+i+1].getBlue();
+					// System.out.println(greenAvg);
+					count++;
+					if(x+i > 0) {
+						redAvg += pixelsOG[x+j-1][y+i-1].getRed();
+						greenAvg += pixelsOG[x+j-1][y+i-1].getGreen();
+						blueAvg += pixelsOG[x+j-1][y+i-1].getBlue();
+					// System.out.println(greenAvg);
+						count++;
+					}
+				}
+				// redAvg = pixelsOG[x+i][y+j].getRed()+pixelsOG[x+i+1][y+j].getRed()+pixelsOG[x+i-1][y+j].getRed()+
+				// 		pixelsOG[x+i][y+j-1].getRed()+pixelsOG[x+i+1][y+j-1].getRed()+pixelsOG[x+i-1][y+j-1].getRed()+
+				// 		pixelsOG[x+i][y+j+1].getRed()+pixelsOG[x+i+1][y+j+1].getRed()+pixelsOG[x+i-1][y+j+1].getRed();
+				// greenAvg = pixelsOG[x+i][y+j].getGreen()+pixelsOG[x+i+1][y+j].getGreen()+pixelsOG[x+i-1][y+j].getGreen()+
+				// 		pixelsOG[x+i][y+j-1].getGreen()+pixelsOG[x+i+1][y+j-1].getGreen()+pixelsOG[x+i-1][y+j-1].getGreen()+
+				// 		pixelsOG[x+i][y+j+1].getGreen()+pixelsOG[x+i+1][y+j+1].getGreen()+pixelsOG[x+i-1][y+j+1].getGreen();
+				// blueAvg = pixelsOG[x+i][y+j].getBlue()+pixelsOG[x+i+1][y+j].getBlue()+pixelsOG[x+i-1][y+j].getBlue()+
+				// 		pixelsOG[x+i][y+j-1].getBlue()+pixelsOG[x+i+1][y+j-1].getBlue()+pixelsOG[x+i-1][y+j-1].getBlue()+
+				// 		pixelsOG[x+i][y+j+1].getBlue()+pixelsOG[x+i+1][y+j+1].getBlue()+pixelsOG[x+i-1][y+j+1].getBlue();
+				// System.out.println(redAvg + " " + greenAvg + " " + blueAvg + " " + count);
+				redAvg /= count;
+				greenAvg /= count;
+					// System.out.println(greenAvg);
+					// System.out.println("\n\n");
+				blueAvg /= count;
+				// System.out.println(redAvg + " " + greenAvg + " " + blueAvg + " " + count);
+
+				// pixelsOG[x+i][y+j].setRed(redAvg);
+				// pixelsOG[x+i][y+j].setGreen(greenAvg);
+				// pixelsOG[x+i][y+j].setBlue(blueAvg);
+
+
+				pixelsEdit[i][j].setRed(redAvg);
+				pixelsEdit[i][j].setGreen(greenAvg);
+				pixelsEdit[i][j].setBlue(blueAvg);
+
+				redAvg = 0; greenAvg = 0; blueAvg = 0; count = 1;
+			}
+		}
+		// for(int i = 0; i < w; i++) {
+		// 	for(int j = 0; j < h; j++) {
+		// 		pixelsOG[x+i][y+j].setRed(pixelsEdit[i][j].getRed());
+		// 		pixelsOG[x+i][y+j].setGreen(pixelsEdit[i][j].getGreen());
+		// 		pixelsOG[x+i][y+j].setBlue(pixelsEdit[i][j].getBlue());
+		// 	}
+		// }
+		for(int i = 0; i < w; i++) {
+			for(int j = 0; j < h; j++) {
+				pixelsOG[x+j][y+i].setRed(pixelsOG[i][j].getRed());
+				pixelsOG[x+j][y+i].setGreen(pixelsOG[i][j].getGreen());
+				pixelsOG[x+j][y+i].setBlue(pixelsOG[i][j].getBlue());
 			}
 		}
 	}
