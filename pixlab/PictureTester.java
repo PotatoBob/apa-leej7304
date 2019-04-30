@@ -207,7 +207,7 @@ public class PictureTester
     //testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();
-    testBlur(180,160,25,25,10);
+    testBlur(160,180,25,25,10);
     //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);

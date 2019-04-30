@@ -87,13 +87,36 @@ public class Picture extends SimplePicture
 
 	public void blur(int x, int y, int w, int h)
 	{
-		Pixel[][] pixelsOG = this.getPixels2D();
+		Pixel[][] pixels = this.getPixels2D();
 		// Pixel[][] pixelsEdit = new Pixel[h][w];
 		// SimplePicture sp = new SimplePicture(w, h);
 		int redAvg = 0, greenAvg = 0, blueAvg = 0, count = 1;
-		for(int i = -w+1; i < 1; i++) {
+		for(int r = y; r < y + h; r++) {
+			for(int c = x; c < x + w; c++) { // get positions of the wanted grid
+				redAvg = 0; greenAvg = 0; blueAvg = 0; count = 0;
+				for(int i = -1; i <= 1; i++) { //i is for columns (i.e. x) left/right
+					for(int j = -1; j <= 1; j++) {//for each pixel
+						if(r+j <= pixels.length-1 && r+j >= 0 && c+i >= 0 && c+i <= pixels[0].length-1) {
+							redAvg += pixels[r+j][c+i].getRed();
+							greenAvg += pixels[r+j][c+i].getGreen();
+							blueAvg += pixels[r+j][c+i].getBlue();
+							count++;
+						}
+					}
+				}
+				redAvg /= count;
+				greenAvg /= count;
+				blueAvg /= count;
+				pixels[r][c].setRed(redAvg);
+				pixels[r][c].setGreen(greenAvg);
+				pixels[r][c].setBlue(blueAvg);
+			}
+		}
+	}
+
+		/*for(int i = -w+1; i < 1; i++) {
 			for(int j = h-1; j < 2*h-1; j++) {
-				/*pixelsEdit[i][j] = new Pixel(sp, i, j);
+				pixelsEdit[i][j] = new Pixel(sp, i, j);
 				if(y+j > 0) {
 					redAvg += pixelsOG[y+j-1][x+i].getRed();
 					greenAvg += pixelsOG[y+j-1][x+i].getGreen();
@@ -149,7 +172,7 @@ public class Picture extends SimplePicture
 					// System.out.println(greenAvg);
 						count++;
 					}
-				}*/
+				}
 				if(y+j > 0 && y + j < getHeight()-1 && x + i > 0 && x+i < getWidth() - 1) {
 					redAvg = (pixelsOG[y+j][x+i].getRed()+pixelsOG[y+j][x+i+1].getRed()+pixelsOG[y+j][x+i-1].getRed()+
 							pixelsOG[y+j-1][x+i].getRed()+pixelsOG[y+j-1][x+i+1].getRed()+pixelsOG[y+j-1][x+i-1].getRed()+
@@ -182,7 +205,7 @@ public class Picture extends SimplePicture
 
 				redAvg = 0; greenAvg = 0; blueAvg = 0; count = 1;
 			}
-		}
+		}*/
 		// for(int i = 0; i < w; i++) {
 		// 	for(int j = 0; j < h; j++) {
 		// 		pixelsOG[x+i][y+j].setRed(pixelsEdit[i][j].getRed());
@@ -198,7 +221,6 @@ public class Picture extends SimplePicture
 		// 		pixelsOG[y+j+h][x+i-w].setBlue(pixelsOG[i][j].getBlue());
 		// 	}
 		// }
-	}
 
 	public void fixUnderwater()
 	{
