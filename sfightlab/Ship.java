@@ -40,7 +40,9 @@ public class Ship extends MovingThing
     }
     catch(Exception e)
     {
+      System.out.println("\n----------SHIP ERROR BEGINS----------\n");
       e.printStackTrace();
+      System.out.println("\n----------SHIP ERROR ENDS----------\n");
     }
   }
 
