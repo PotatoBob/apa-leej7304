@@ -19,6 +19,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
   private Ship ship;
   private Alien alienOne;
   private Alien alienTwo;
+  private Ammo bullet;
 
   /* uncomment once you are ready for this part
    *
@@ -38,8 +39,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     //instantiate other instance variables
     //Ship, Alien
     ship = new Ship(100,100,30,30,5);
-    alienOne = new Alien(100,100,30,30,5);
-    alienTwo = new Alien(200,100,30,30,5);
+    alienOne = new Alien(100,100,50,50,5);
+    alienTwo = new Alien(200,100,50,50,5);
+    bullet = new Ammo(100,500,2);
 
     this.addKeyListener(this);
     new Thread(this).start();
@@ -70,6 +72,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     graphToBack.fillRect(0,0,800,600);
     graphToBack.setColor(Color.BLUE);
     graphToBack.drawString("StarFighter ", 25, 50 );
+    graphToBack.setColor(Color.YELLOW); // for ammo
 
     ship.draw(graphToBack);
     alienOne.draw(graphToBack);
@@ -91,10 +94,29 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     {
       ship.move("DOWN");
     }
-    /*if(keys[4] == true)
+    if(keys[4] == true)
     {
-      ship.move("DOWN");
-    }*/ // FIRE
+      bullet.setX(ship.getX());
+      bullet.setY(ship.getY());
+      bullet.draw(graphToBack);
+    } // FIRE
+    /*else
+    {
+      bullet.setX(ship.getX());
+      bullet.setY(ship.getY());
+    }*/
+
+    if(bullet.getY()>0)
+    {
+      bullet.move("UP");
+      bullet.draw(graphToBack);
+    }
+    else
+    {
+      bullet.setDraw(false);
+      bullet.setX(ship.getX());
+      bullet.setY(ship.getY());
+    }
 
     //add code to move Ship, Alien, etc.
 
@@ -152,6 +174,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     if (e.getKeyCode() == KeyEvent.VK_SPACE)
     {
       keys[4] = false;
+      bullet.setDraw(true);
     }
     repaint();
   }
