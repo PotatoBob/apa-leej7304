@@ -19,13 +19,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
   private Ship ship;
   private Alien alienOne;
   private Alien alienTwo;
-  private Ammo bullet;
 
   /* uncomment once you are ready for this part
-   *
+   **/
    private AlienHorde horde;
    private Bullets shots;
-  */
+  
 
   private boolean[] keys;
   private BufferedImage back;
@@ -38,10 +37,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
     //instantiate other instance variables
     //Ship, Alien
+
     ship = new Ship(100,100,30,30,5);
     alienOne = new Alien(100,100,50,50,5);
     alienTwo = new Alien(200,100,50,50,5);
-    bullet = new Ammo(100,500,2);
+    //horde = new AlienHorde(10);
+    shots = new Bullets();
 
     this.addKeyListener(this);
     new Thread(this).start();
@@ -78,33 +79,32 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     alienOne.draw(graphToBack);
     alienTwo.draw(graphToBack);
 
-    if(keys[0] == true)
+    if(keys[0])
     {
       ship.move("LEFT");
     }
-    if(keys[1] == true)
+    if(keys[1])
     {
       ship.move("RIGHT");
     }
-    if(keys[2] == true)
+    if(keys[2])
     {
       ship.move("UP");
     }
-    if(keys[3] == true)
+    if(keys[3])
     {
       ship.move("DOWN");
     }
-    if(keys[4] == true)
+    if(keys[4])
+    {
+      shots.add(new Ammo((ship.getX() + ship.getWidth() / 2) - 5, ship.getY() - 5, 5));
+    }
+    /*if(keys[4] == true)
     {
       bullet.setX(ship.getX());
       bullet.setY(ship.getY());
       bullet.draw(graphToBack);
     } // FIRE
-    /*else
-    {
-      bullet.setX(ship.getX());
-      bullet.setY(ship.getY());
-    }*/
 
     if(bullet.getY()>0)
     {
@@ -116,7 +116,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
       bullet.setDraw(false);
       bullet.setX(ship.getX());
       bullet.setY(ship.getY());
-    }
+    }*/
+    //once i create bullets, i will change this to be in Ammo
+    shots.moveEmAll();
+    shots.drawEmAll(graphToBack);
+    // shots.cleanEmUp();
 
     //add code to move Ship, Alien, etc.
 
@@ -174,14 +178,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     if (e.getKeyCode() == KeyEvent.VK_SPACE)
     {
       keys[4] = false;
-      bullet.setDraw(true);
     }
     repaint();
   }
 
   public void keyTyped(KeyEvent e)
   {
-    //no code needed here
   }
 
   public void run()

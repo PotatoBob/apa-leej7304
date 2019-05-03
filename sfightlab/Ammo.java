@@ -12,6 +12,7 @@ public class Ammo extends MovingThing
 {
   private int speed;
   private boolean draw;
+  private static final int SIZE = 10;
 
   public Ammo()
   {
@@ -25,7 +26,7 @@ public class Ammo extends MovingThing
 
   public Ammo(int x, int y, int s)
   {
-    super(x,y,10,10);
+    super(x,y,SIZE,SIZE);
     speed = s;
   }
 
@@ -39,16 +40,10 @@ public class Ammo extends MovingThing
     return speed;
   }
 
-  public void setDraw(boolean draw) {
-    this.draw = draw;
-  }
-
   public void draw( Graphics window )
   {
-    if(draw)
-      window.fillRect(getX(),getY(),getWidth(),getHeight());
+    window.fillRect(getX(),getY(),SIZE,SIZE);
   }
-        
         
   public void move( String direction )
   {
@@ -58,6 +53,44 @@ public class Ammo extends MovingThing
     if(direction.equals("DOWN")) {
       setY(getY() + getSpeed());
     }
+    if(direction.equals("LEFT")) {
+      setX(getX() - getSpeed());
+    }
+    if(direction.equals("RIGHT")) {
+      setX(getX() + getSpeed());
+    }
+  }
+
+  public boolean alienCollision(Alien al)
+  {
+    /*if (getX() + SIZE >= a.getX() && getX() <= a.getX() + a.getWidth()
+            && getY() - SIZE >= a.getY()
+            && getY() <= a.getY() + a.getHeight()) {
+      setDraw(false);
+      return true;
+    } else {
+      return false;
+    }*/
+    if (getX() + 10 >= al.getX() && getX() <= al.getX() + al.getWidth()
+            && getY() - 10 >= al.getY()
+            && getY() <= al.getY() + al.getHeight()) {
+      setDraw(false);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public void setDraw(boolean draw)
+  {
+    this.draw = draw;
+  }
+
+  public boolean getDraw()
+  {
+    if(getY() < 0)
+      setDraw(false);
+    return draw;
   }
 
   public String toString()

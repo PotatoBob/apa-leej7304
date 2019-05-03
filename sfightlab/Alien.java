@@ -58,9 +58,6 @@ public class Alien extends MovingThing
 
   public void move(String direction)
   {
-    if(direction.equals("UP")) {
-      setY(getY() - getSpeed());
-    }
     if(direction.equals("DOWN")) {
       setY(getY() + getSpeed());
     }
@@ -73,7 +70,7 @@ public class Alien extends MovingThing
   }
 
   public void draw( Graphics window )
-  {
+  { 
     window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
   }
 
