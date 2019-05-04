@@ -39,9 +39,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     //Ship, Alien
 
     ship = new Ship(100,100,30,30,5);
-    alienOne = new Alien(100,100,50,50,5);
-    alienTwo = new Alien(200,100,50,50,5);
-    //horde = new AlienHorde(10);
+    // alienOne = new Alien(100,100,50,50,5);
+    // alienTwo = new Alien(200,100,50,50,5);
+    horde = new AlienHorde(5);
     shots = new Bullets();
 
     this.addKeyListener(this);
@@ -76,8 +76,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     graphToBack.setColor(Color.YELLOW); // for ammo
 
     ship.draw(graphToBack);
-    alienOne.draw(graphToBack);
-    alienTwo.draw(graphToBack);
+    // alienOne.draw(graphToBack);
+    // alienTwo.draw(graphToBack);
 
     if(keys[0])
     {
@@ -121,6 +121,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     shots.moveEmAll();
     shots.drawEmAll(graphToBack);
     // shots.cleanEmUp();
+    horde.removeDeadOnes(shots.getList());
+    horde.drawEmAll(graphToBack);
 
     //add code to move Ship, Alien, etc.
 

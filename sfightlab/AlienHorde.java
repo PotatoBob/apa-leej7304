@@ -18,20 +18,23 @@ public class AlienHorde
   public AlienHorde(int size)
   {
     aliens = new ArrayList<>();
-    this.size = size;
+    for(int i = 0; i < size; i++) {
+      add(new Alien());
+    }
   }
 
   public void add(Alien al)
   {
     aliens.add(al);
+    size = aliens.size();
   }
 
   public void drawEmAll( Graphics window )
   {
     int count = 0;
     for(Alien al : aliens) {
-      al.setX(++count*50);
-      al.draw(window)
+      al.setX(++count*100);
+      al.draw(window);
     }
   }
 
@@ -42,7 +45,19 @@ public class AlienHorde
 
   public void removeDeadOnes(List<Ammo> shots)
   {
-    
+    for(int i = getSize()-1; i >= 0; i--) {
+      for(Ammo a : shots) {
+        if(a.alienCollision(aliens.get(i))) {
+          aliens.remove(i);
+          break;
+        }
+      }
+    }
+  }
+
+  public int getSize()
+  {
+    return size = aliens.size();
   }
 
   public String toString()
