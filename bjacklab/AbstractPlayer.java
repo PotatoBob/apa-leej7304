@@ -5,7 +5,6 @@
 //Lab  - 
 
 import java.util.ArrayList;
-import BlackJack.Card;
 
 public abstract class AbstractPlayer implements Playerable
 {
@@ -13,45 +12,69 @@ public abstract class AbstractPlayer implements Playerable
   private int winCount;
 
   //constructors
+  public AbstractPlayer() 
+  {
+  	hand = new ArrayList<Card>();
+  	winCount = 0;
+  }
+  public AbstractPlayer(ArrayList<Card> newHand) 
+  {
+  	hand = newHand;
+  	winCount = 0;
+  }
+  public AbstractPlayer(int numwins) 
+  {
+  	hand = new ArrayList<Card>();
+  	winCount = numwins;
+  }
+  public AbstractPlayer(ArrayList<Card> newHand, int numwins)
+  {
+  	hand = newHand;
+  	winCount = numwins;
+  }
 
   public  void addCardToHand( Card temp )
   {
-
+  	hand.add(temp);
 
   }
 
-  public  void resetHand( )
+  public  void resetHand()
   {
-
+  	hand = new ArrayList<Card>();
 
   }
 
   public  void setWinCount( int numwins )
   {
-
+  	winCount = numwins;
 
   }
 
-  public int getWinCount() { return 0; }
+  public int getWinCount() { return winCount; }
 
-  public int getHandSize() { return 0; }
+  public int getHandSize() { return hand.size(); }
 
   public int getHandValue()
   {
     //great example of polymorphism
     int total=0;
-
-
-
-
-
-
-
+    for(Card c : hand) {
+    	total += c.getValue();
+    }
     return total;
   }
 
   public String toString()
   {
-    return "hand = " + hand.toString() + " \n-  # wins " + winCount;
+    String out = "hand = [";
+    for(int i = 0; i < getHandSize() - 1; i++) {
+      out += hand.get(i).toString();
+      out += "\n";
+    }
+    out += hand.get(getHandSize()-1) + "]";
+    out += "  = " + getHandValue();
+    return out;
+    //return "hand = " + hand.toString() + " \n-  # wins " + winCount;
   }
 }

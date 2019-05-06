@@ -19,19 +19,19 @@ public class PlayerTestOne
     player.addCardToHand(deck.nextCard());
     player.addCardToHand(deck.nextCard());
 
-    out.println("\n\ntoString");
-    out.println(player);        
+    System.out.println("\n\ntoString");
+    System.out.println(player);        
                 
-    out.println("\n\nhandValue");
-    out.println(player.getHandValue());                                 
+    System.out.println("\n\nhandValue");
+    System.out.println(player.getHandValue());                                 
                 
     player.addCardToHand(deck.nextCard());
     player.addCardToHand(deck.nextCard());
 
-    out.println("\n\ntoString");
-    out.println(player);        
+    System.out.println("\n\ntoString");
+    System.out.println(player);        
                 
-    out.println("\n\nhandValue");
-    out.println(player.getHandValue());                                                                 
+    System.out.println("\n\nhandValue");
+    System.out.println(player.getHandValue());                                                                 
   }
 }

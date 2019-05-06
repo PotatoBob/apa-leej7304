@@ -6,33 +6,29 @@
 
 
 //define Dealer class here
-        
-        
-        
-        
-//instance variable - Deck 
+public class Dealer extends AbstractPlayer
+{
+	//instance variable - Deck 
+	private Deck deck;
 
+	//constructors
+	public Dealer()
+	{
 
+	}
 
-
-
-//constructors
-
-
-
-
-
-//method to shuffle
+	//method to shuffle
 
 
 
 
 
 
-//method to deal a card
+	//method to deal a card
 
 
 
 
 
-//hit method goes here
+	//hit method goes here
+}
