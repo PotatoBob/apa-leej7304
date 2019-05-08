@@ -22,7 +22,7 @@ public class Deck
   {
     //initialize data - stackOfCards - topCardIndex
     stackOfCards = new ArrayList<Card>();
-    topCardIndex = 51;
+    topCardIndex = NUMCARDS - 1;
     for(int suit = 0; suit < NUMSUITS; suit++)
     {
     	for(int face = 1; face <= NUMFACES; face++)
@@ -43,13 +43,13 @@ public class Deck
     //shuffle the deck
     //reset variables as needed
     Collections.shuffle(stackOfCards);
-    topCardIndex = 51;
+    topCardIndex = size()-1;
   }
 
   //accessors
   public int size ()
   {
-    return NUMCARDS;
+    return stackOfCards.size();
   }
 
   public int numCardsLeft()
@@ -59,7 +59,11 @@ public class Deck
 
   public Card nextCard()
   {
-    return stackOfCards.get(topCardIndex--);
+    try {
+      return stackOfCards.get(topCardIndex--);
+    } catch (NullPointerException e) {
+      return null;  
+    }
   }
 
   public String toString()
