@@ -13,6 +13,8 @@ public class Alien extends MovingThing
 {
   private int speed;
   private Image image;
+  private int yCount = 4;
+  private boolean goingLeft = true;
 
   public Alien()
   {
@@ -67,6 +69,38 @@ public class Alien extends MovingThing
     if(direction.equals("RIGHT")) {
       setX(getX() + getSpeed());
     }
+  }
+
+  public void move()
+  {
+    /*if(getX() <= getWidth() && goingLeft) {
+      if(getY() < yCount*getHeight())
+        move("DOWN");
+      else {
+        goingLeft = false;
+        yCount += 2;
+      }
+    }
+    else if(getX() + getWidth() >= 800 && !goingLeft) {
+      if(getY() < yCount*getHeight())
+        move("DOWN");
+      else {
+        goingLeft = true;
+        yCount += 2;
+      }
+    }
+    else {
+      if(goingLeft)
+        move("LEFT");
+      else
+        move("RIGHT");
+    }*/
+    /*setX(getX()+speed);
+    if(getX() < -30 || getX() > 810)
+    {
+      setY(getY()+(getWidth()*2));
+      setSpeed(-getSpeed());
+    }*/
   }
 
   public void draw( Graphics window )

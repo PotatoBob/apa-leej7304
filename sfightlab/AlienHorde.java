@@ -13,51 +13,74 @@ import java.util.List;
 public class AlienHorde
 {
   private List<Alien> aliens;
-  private int size;
+  private final int ALIEN_SIZE = 30;
+  private final int ALIEN_SPEED = 1;
 
   public AlienHorde(int size)
   {
     aliens = new ArrayList<>();
     for(int i = 0; i < size; i++) {
-      add(new Alien());
+      //add(new Alien(2*ALIEN_SIZE*i, -2*ALIEN_SIZE, ALIEN_SIZE, ALIEN_SIZE, ALIEN_SPEED));
+    	add(new Alien());
     }
   }
 
   public void add(Alien al)
   {
     aliens.add(al);
-    size = aliens.size();
   }
 
-  public void drawEmAll( Graphics window )
+  public void drawEmAll( Graphics window ) throws NullPointerException
   {
     int count = 0;
     for(Alien al : aliens) {
-      al.setX(++count*100);
-      al.draw(window);
+    	try {
+			al.setX(++count*100);
+			al.draw(window);
+		} catch(NullPointerException e) {
+			count++;
+		}
     }
+    /*for(Alien al : aliens) {
+    	try {
+	    	al.draw(window);
+    	} catch(NullPointerException e) {
+    		e.printStackTrace();
+    	}
+    }*/
   }
 
   public void moveEmAll()
   {
     //depends on if they all move left/right or one goes down then changes at a time
+    /*for(Alien al : aliens) {
+    	try {
+	    	al.move();
+    	} catch(NullPointerException e) {
+    		e.printStackTrace();
+    	}
+    }*/
   }
 
   public void removeDeadOnes(List<Ammo> shots)
   {
     for(int i = getSize()-1; i >= 0; i--) {
       for(Ammo a : shots) {
-        if(a.alienCollision(aliens.get(i))) {
-          aliens.remove(i);
-          break;
-        }
+      	try {
+	        if(a.alienCollision(aliens.get(i))) {
+	          aliens.set(i,null);
+	          break;
+	        }
+	    } catch(NullPointerException e) {
+	    	continue;
+	    }
       }
     }
   }
 
   public int getSize()
   {
-    return size = aliens.size();
+    return aliens.size();
   }
 
   public String toString()
