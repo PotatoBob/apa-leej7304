@@ -5,14 +5,14 @@ JC = javac
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
-	Moveable.java \
-	MovingThing.java \
-	Ship.java \
 	Alien.java \
 	AlienHorde.java \
 	Ammo.java \
 	Bullets.java \
+	Moveable.java \
+	MovingThing.java \
 	OuterSpace.java \
+	Ship.java \
 	StarFighter.java \
 	Shiptest.java
 
