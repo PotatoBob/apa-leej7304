@@ -93,37 +93,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     {
       shots.add(new Ammo((ship.getX() + ship.getWidth() / 2) - 5, ship.getY() - 5, 5));
     }
-    /*if(keys[4] == true)
-    {
-      bullet.setX(ship.getX());
-      bullet.setY(ship.getY());
-      bullet.draw(graphToBack);
-    } // FIRE
-
-    if(bullet.getY()>0)
-    {
-      bullet.move("UP");
-      bullet.draw(graphToBack);
-    }
-    else
-    {
-      bullet.setDraw(false);
-      bullet.setX(ship.getX());
-      bullet.setY(ship.getY());
-    }*/
-    //once i create bullets, i will change this to be in Ammo
     shots.moveEmAll();
     shots.drawEmAll(graphToBack);
     // shots.cleanEmUp();
     horde.removeDeadOnes(shots.getList());
     horde.moveEmAll();
     horde.drawEmAll(graphToBack);
-
-    //add code to move Ship, Alien, etc.
-
-
-    //add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
-
 
     twoDGraph.drawImage(back, null, 0, 0);
   }

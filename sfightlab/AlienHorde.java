@@ -47,14 +47,6 @@ public class AlienHorde
 
   public void moveEmAll()
   {
-    //depends on if they all move left/right or one goes down then changes at a time
-    /*for(Alien al : aliens) {
-    	try {
-	    	al.move();
-    	} catch(NullPointerException e) {
-    		e.printStackTrace();
-    	}
-    }*/
     for(Alien al : aliens) {
     	al.move();
     }

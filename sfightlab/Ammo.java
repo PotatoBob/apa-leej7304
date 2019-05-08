@@ -63,14 +63,6 @@ public class Ammo extends MovingThing
 
   public boolean alienCollision(Alien al)
   {
-    /*if (getX() + SIZE >= a.getX() && getX() <= a.getX() + a.getWidth()
-            && getY() - SIZE >= a.getY()
-            && getY() <= a.getY() + a.getHeight()) {
-      setDraw(false);
-      return true;
-    } else {
-      return false;
-    }*/
     if (getX() + 10 >= al.getX() && getX() <= al.getX() + al.getWidth()
             && getY() - 10 >= al.getY()
             && getY() <= al.getY() + al.getHeight()) {

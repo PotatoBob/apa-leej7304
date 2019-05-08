@@ -77,29 +77,6 @@ public class Alien extends MovingThing
 
   public void move()
   {
-    /*if(getX() <= getWidth() && goingLeft) {
-      if(getY() < yCount*getHeight())
-        move("DOWN");
-      else {
-        goingLeft = false;
-        yCount += 2;
-      }
-    }
-    else if(getX() + getWidth() >= 800 && !goingLeft) {
-      if(getY() < yCount*getHeight())
-        move("DOWN");
-      else {
-        goingLeft = true;
-        yCount += 2;
-      }
-    }
-    else {
-      if(goingLeft)
-        move("LEFT");
-      else
-        move("RIGHT");
-    }*/
-    //setX(getX()+speed);
     if((getX() < 10 && "LEFT".equals(direction)) || (getX() > 750 && "RIGHT".equals(direction)))
     {
       move("DOWN");
