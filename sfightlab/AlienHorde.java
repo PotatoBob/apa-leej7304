@@ -20,8 +20,8 @@ public class AlienHorde
   {
     aliens = new ArrayList<>();
     for(int i = 0; i < size; i++) {
-      //add(new Alien(2*ALIEN_SIZE*i, -2*ALIEN_SIZE, ALIEN_SIZE, ALIEN_SIZE, ALIEN_SPEED));
-    	add(new Alien());
+		// add(new Alien(2*ALIEN_SIZE*i, -2*ALIEN_SIZE, ALIEN_SIZE, ALIEN_SIZE, ALIEN_SPEED));
+    	add(new Alien(2*ALIEN_SIZE*i, 0));
     }
   }
 
@@ -35,7 +35,7 @@ public class AlienHorde
     int count = 0;
     for(Alien al : aliens) {
     	try {
-			al.setX(++count*100);
+			//al.setX(++count*100);
 			al.draw(window);
 		} catch(NullPointerException e) {
 			count++;
