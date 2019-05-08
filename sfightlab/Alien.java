@@ -100,7 +100,7 @@ public class Alien extends MovingThing
         move("RIGHT");
     }*/
     //setX(getX()+speed);
-    if((getX() < 30 && "LEFT".equals(direction)) || (getX() > 760 && "RIGHT".equals(direction)))
+    if((getX() < 10 && "LEFT".equals(direction)) || (getX() > 750 && "RIGHT".equals(direction)))
     {
       move("DOWN");
       if(getY() >= yCount*getHeight()) {

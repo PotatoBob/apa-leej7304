@@ -19,8 +19,8 @@ public class AlienHorde
   public AlienHorde(int size)
   {
     aliens = new ArrayList<>();
-    for(int i = 0; i < size; i++) {
-    	add(new Alien(2*ALIEN_SIZE*i, 2*ALIEN_SIZE, ALIEN_SIZE, ALIEN_SIZE, 1));
+    for(int i = 1; i <= size; i++) {
+    	add(new Alien(2*ALIEN_SIZE*i, 2*ALIEN_SIZE, ALIEN_SIZE, ALIEN_SIZE, 2));
     }
   }
 
