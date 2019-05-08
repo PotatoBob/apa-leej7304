@@ -20,8 +20,7 @@ public class AlienHorde
   {
     aliens = new ArrayList<>();
     for(int i = 0; i < size; i++) {
-		// add(new Alien(2*ALIEN_SIZE*i, -2*ALIEN_SIZE, ALIEN_SIZE, ALIEN_SIZE, ALIEN_SPEED));
-    	add(new Alien(2*ALIEN_SIZE*i, 0));
+    	add(new Alien(2*ALIEN_SIZE*i, 2*ALIEN_SIZE, ALIEN_SIZE, ALIEN_SIZE, 1));
     }
   }
 
@@ -30,16 +29,12 @@ public class AlienHorde
     aliens.add(al);
   }
 
-  public void drawEmAll( Graphics window ) throws NullPointerException
+  public void drawEmAll( Graphics window )
   {
     int count = 0;
     for(Alien al : aliens) {
-    	try {
-			//al.setX(++count*100);
-			al.draw(window);
-		} catch(NullPointerException e) {
-			count++;
-		}
+		//al.setX(++count*100);
+		al.draw(window);
     }
     /*for(Alien al : aliens) {
     	try {
@@ -60,6 +55,9 @@ public class AlienHorde
     		e.printStackTrace();
     	}
     }*/
+    for(Alien al : aliens) {
+    	al.move();
+    }
   }
 
   public void removeDeadOnes(List<Ammo> shots)
@@ -68,7 +66,7 @@ public class AlienHorde
       for(Ammo a : shots) {
       	try {
 	        if(a.alienCollision(aliens.get(i))) {
-	          aliens.set(i,null);
+	          aliens.remove(i);
 	          break;
 	        }
 	    } catch(NullPointerException e) {

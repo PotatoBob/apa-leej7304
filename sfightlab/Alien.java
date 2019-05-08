@@ -14,7 +14,7 @@ public class Alien extends MovingThing
   private int speed;
   private Image image;
   private int yCount = 4;
-  private boolean goingLeft = true;
+  private String direction = "LEFT";
 
   public Alien()
   {
@@ -58,6 +58,10 @@ public class Alien extends MovingThing
     return speed;
   }
 
+  private void setDirection(String direction) {
+    this.direction = direction;
+  }
+
   public void move(String direction)
   {
     if(direction.equals("DOWN")) {
@@ -95,12 +99,19 @@ public class Alien extends MovingThing
       else
         move("RIGHT");
     }*/
-    /*setX(getX()+speed);
-    if(getX() < -30 || getX() > 810)
+    //setX(getX()+speed);
+    if((getX() < 30 && "LEFT".equals(direction)) || (getX() > 760 && "RIGHT".equals(direction)))
     {
-      setY(getY()+(getWidth()*2));
-      setSpeed(-getSpeed());
-    }*/
+      move("DOWN");
+      if(getY() >= yCount*getHeight()) {
+        if("LEFT".equals(direction))
+          direction = "RIGHT";
+        else
+          direction = "LEFT";
+        yCount += 2;
+      }
+    } else
+      move(direction);
   }
 
   public void draw( Graphics window )
