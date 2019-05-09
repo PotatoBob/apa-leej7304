@@ -33,8 +33,10 @@ public class BlackJack
 
 	public void playGame()
 	{
+		//TODO: make dealer hit on soft 17, otherwise hit on 16
+		//TODO: add gambling???
+		//TODO: expose one of dealer's cards in beginning, but not both???
 	    Scanner keyboard = new Scanner(System.in);
-	    char choice = 0;
 
 	    while(continueGame) {
 		    dealer.shuffle();
