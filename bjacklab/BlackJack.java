@@ -33,9 +33,14 @@ public class BlackJack
 
 	public void playGame()
 	{
+		//TODO: add BLACKJACKS what are you doing???!
+		//TODO: add separate win condition for blackjack (combines with gambling later)
+		//TODO: add BLACKJACK check for dealer, not just player
+		//TODO: having BLACKJACK skips the player hit/stand loop
 		//TODO: make dealer hit on soft 17, otherwise hit on 16
-		//TODO: add gambling???
 		//TODO: expose one of dealer's cards in beginning, but not both???
+		//TODO: add gambling???
+		//TODO: add option to split hand on doubles???
 	    Scanner keyboard = new Scanner(System.in);
 
 	    while(continueGame) {
@@ -50,12 +55,15 @@ public class BlackJack
 
 		    dealer.addCardToHand(dealer.deal());
 		    dealer.addCardToHand(dealer.deal());
-
-		    System.out.println("Player Hand:\n" + player);
 		    //we don't know dealer's hand until after player finishes
 
-		    while(player.getHandValue() <= 21 && hit) {
-		    	System.out.print("hit? y/n :: ");
+		    System.out.println("Player Hand:\n" + player);
+
+		    if(player.getHandValue() == 21)
+		    	System.out.println("BlACKJACK!");
+
+		    while(player.getHandValue() < 21 && hit) {
+		    	System.out.print("\nhit? y/n :: ");
 		    	if(hit = (keyboard.next().charAt(0) == 'y')) {
 		    		player.addCardToHand(dealer.deal());
 		    	} else {
@@ -64,13 +72,13 @@ public class BlackJack
 		    	if(player.getHandValue() > 21) {
 		    		player.setAceLow();
 		    	}
-		    	System.out.println("Player Hand:\n" + player);
+		    	System.out.println("\n\nPlayer Hand:\n" + player);
 		    }
 		    if(player.getHandValue() > 21) {
 		    	System.out.println("Shucks! You busted! Dealer wins!");
 		    	dealerWins++;
 		    } else {
-			    System.out.println("Dealer's Hand:\n" + dealer);
+			    System.out.println("\nDealer's Hand:\n" + dealer);
 			    Card temp = null;
 			    while(dealer.getHandValue() < 17) { // later implement dealer hit on "soft" 17 (A + 6)
 			    	dealer.addCardToHand(temp = dealer.deal());
@@ -81,24 +89,25 @@ public class BlackJack
 			    	System.out.println("Dealer Hand Value: " + dealer.getHandValue());
 			    }
 			    if(dealer.getHandValue() > 21) {
-			    	System.out.println("Dealer busted! You win!");
+			    	System.out.println("\nDealer busted! You win!");
 		    		playerWins++;
 			    } else {
 			    	if(player.getHandValue() > dealer.getHandValue()) {
-			    		System.out.println("You win! Your hand (" + player.getHandValue() + ") is larger than the dealer's hand (" + dealer.getHandValue() + ")!");
+			    		System.out.println("\nYou win! Your hand (" + player.getHandValue() + ") is larger than the dealer's hand (" + dealer.getHandValue() + ")!");
 			    		playerWins++;
 			    	} else if(player.getHandValue() == dealer.getHandValue()) {
-			    		System.out.println("It's a tie! Your hand (" + player.getHandValue() + ") is the same as the dealer's hand (" + dealer.getHandValue() + ")!");
+			    		System.out.println("\nIt's a tie! Your hand (" + player.getHandValue() + ") is the same as the dealer's hand (" + dealer.getHandValue() + ")!");
 			    	} else {
-			    		System.out.println("Dealer wins! Your hand (" + player.getHandValue() + ") is smaller than the dealer's hand (" + dealer.getHandValue() + ")!");
+			    		System.out.println("\nDealer wins! Your hand (" + player.getHandValue() + ") is smaller than the dealer's hand (" + dealer.getHandValue() + ")!");
 			    		dealerWins++;
 			    	}
 			    }
 			}
-		    System.out.println("Player wins: " + playerWins);
+		    System.out.println("\nPlayer wins: " + playerWins);
 		    System.out.println("Dealer wins: " + dealerWins);
-		    System.out.print("Continue playing? y/n :: ");
+		    System.out.print("\nContinue playing? y/n :: ");
 		    continueGame = ('y' == keyboard.next().charAt(0));
+		    System.out.println("---------------------\n\n");
 		}
 	}
         
