@@ -48,6 +48,9 @@ public class BlackJack
     	} else {
     		hit = false;
     	}
+    	if(player.getHandValue() > 21) {
+    		player.setAceLow();
+    	}
     	System.out.println("Player Hand:\n" + player);
     }
     if(player.getHandValue() > 21) {

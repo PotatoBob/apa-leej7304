@@ -65,6 +65,16 @@ public abstract class AbstractPlayer implements Playerable
     return total;
   }
 
+  public void setAceLow()
+  {
+    for(Card c : hand) {
+      if(((BlackJackCard)c).getValue() == 11) {
+        ((BlackJackCard)c).aceLow();
+        break;
+      }
+    }
+  }
+
   public String toString()
   {
     String out = "hand = [";

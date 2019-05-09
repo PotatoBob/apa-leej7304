@@ -31,6 +31,7 @@ public class Player extends AbstractPlayer
 	{
 		super(hand, winCount);
 	}
+	
 
 	//hit method goes here
 	public boolean hit()
