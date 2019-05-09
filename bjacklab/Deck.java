@@ -43,6 +43,9 @@ public class Deck
     //shuffle the deck
     //reset variables as needed
     Collections.shuffle(stackOfCards);
+    for(Card c : stackOfCards) {
+      ((BlackJackCard)c).setAceHigh(true);
+    }
     topCardIndex = size()-1;
   }
 

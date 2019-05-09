@@ -69,7 +69,7 @@ public abstract class AbstractPlayer implements Playerable
   {
     for(Card c : hand) {
       if(((BlackJackCard)c).getValue() == 11) {
-        ((BlackJackCard)c).aceLow();
+        ((BlackJackCard)c).setAceHigh(false);
         break;
       }
     }

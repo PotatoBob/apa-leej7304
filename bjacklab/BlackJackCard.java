@@ -14,8 +14,8 @@ public class BlackJackCard extends Card
 		super(face, suit);
 	}
 
-	public void aceLow() {
-		aceHigh = false;
+	public void setAceHigh(boolean aceHigh) {
+		this.aceHigh = aceHigh;
 	}
 	public int getValue()
 	{
