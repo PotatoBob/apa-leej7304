@@ -59,16 +59,16 @@ public class Ship extends MovingThing
 
   public void move(String direction)
   {
-    if(direction.equals("UP")) {
+    if(direction.equals("UP") && getY() > 0) {
       setY(getY() - getSpeed());
     }
-    if(direction.equals("DOWN")) {
+    if(direction.equals("DOWN") && getY() + getHeight() < 575) {
       setY(getY() + getSpeed());
     }
-    if(direction.equals("LEFT")) {
+    if(direction.equals("LEFT") && getX() > 0) {
       setX(getX() - getSpeed());
     }
-    if(direction.equals("RIGHT")) {
+    if(direction.equals("RIGHT") && getX() + getWidth() < 800) {
       setX(getX() + getSpeed());
     }
   }
