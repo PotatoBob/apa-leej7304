@@ -55,6 +55,24 @@ public class BlackJack
     	return;
     }
     //else dealer's turn
+    System.out.println("Dealer's Hand:\n" + dealer);
+    Card temp = null;
+    while(dealer.getHandValue() < 17) { // later implement dealer hit on "soft" 17 (A + 6)
+    	dealer.addCardToHand(temp = dealer.deal());
+    	System.out.println("dealer hits: " + temp);
+    	System.out.println("Dealer Hand Value: " + dealer.getHandValue());
+    }
+    if(dealer.getHandValue() > 21) {
+    	System.out.println("Dealer busted! You win!");
+    } else {
+    	if(player.getHandValue() > dealer.getHandValue()) {
+    		System.out.println("You win! Your hand (" + player.getHandValue() + ") is larger than the dealer's hand (" + dealer.getHandValue() + ")!");
+    	} else if(player.getHandValue() == dealer.getHandValue()) {
+    		System.out.println("It's a tie! Your hand (" + player.getHandValue() + ") is the same as the dealer's hand (" + dealer.getHandValue() + ")!");
+    	} else {
+    		System.out.println("Dealer wins! Your hand (" + player.getHandValue() + ") is smaller than the dealer's hand (" + dealer.getHandValue() + ")!");
+    	}
+    }
   }
         
   public static void main(String[] args)
