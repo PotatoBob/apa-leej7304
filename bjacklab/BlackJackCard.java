@@ -18,9 +18,12 @@ public class BlackJackCard extends Card
 	{
 		//enables you to build the value for the game into the card
 		//this makes writing the whole program a little easier
-		int suitValue;
-
-		return getFace();
+		if(getFace() == 1)
+			return 11;
+		else if(getFace() >= 10)
+			return 10;
+		else
+			return getFace();
 	}
         
 }
