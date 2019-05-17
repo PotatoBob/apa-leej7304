@@ -7,7 +7,7 @@
 import static java.lang.System.*;
 import java.util.Scanner;
 
-public class BlackJack
+public class BlackJackSolo
 {
 	//add in Player instance variable
 	//add in Dealer instance variable
