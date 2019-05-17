@@ -37,7 +37,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     //Ship, Alien
 
     ship = new Ship(400,300,30,30,5);
-    horde = new AlienHorde(5);
+    horde = new AlienHorde(20);
     shots = new Bullets();
 
     this.addKeyListener(this);

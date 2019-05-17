@@ -13,7 +13,7 @@ public class Alien extends MovingThing
 {
   private int speed;
   private Image image;
-  private int yCount = 4;
+  private int yCount = 1;
   private String direction = "LEFT";
 
   public Alien()
@@ -77,7 +77,7 @@ public class Alien extends MovingThing
 
   public void move()
   {
-    if((getX() < 10 && "LEFT".equals(direction)) || (getX() > 750 && "RIGHT".equals(direction)))
+    if((getX() < getWidth() && "LEFT".equals(direction)) || (getX() >= 800-2*getWidth() && "RIGHT".equals(direction)))
     {
       move("DOWN");
       if(getY() >= yCount*getHeight()) {

@@ -14,13 +14,14 @@ public class AlienHorde
 {
   private List<Alien> aliens;
   private final int ALIEN_SIZE = 30;
-  private final int ALIEN_SPEED = 1;
+  private final int ALIEN_SPEED = 2;
 
   public AlienHorde(int size)
   {
     aliens = new ArrayList<>();
+    int colMult = 1; int rowMult = 2;
     for(int i = 1; i <= size; i++) {
-    	add(new Alien(2*ALIEN_SIZE*i, 2*ALIEN_SIZE, ALIEN_SIZE, ALIEN_SIZE, 2));
+    	add(new Alien(2*ALIEN_SIZE*i, ALIEN_SIZE, ALIEN_SIZE, ALIEN_SIZE, ALIEN_SPEED));
     }
   }
 
@@ -36,13 +37,6 @@ public class AlienHorde
 		//al.setX(++count*100);
 		al.draw(window);
     }
-    /*for(Alien al : aliens) {
-    	try {
-	    	al.draw(window);
-    	} catch(NullPointerException e) {
-    		e.printStackTrace();
-    	}
-    }*/
   }
 
   public void moveEmAll()
