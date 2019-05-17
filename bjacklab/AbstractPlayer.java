@@ -77,13 +77,12 @@ public abstract class AbstractPlayer implements Playerable
 
   public String toString()
   {
-    String out = "hand = [";
-    for(int i = 0; i < getHandSize() - 1; i++) {
+    String out = "[";
+    for(int i = 0; i < getHandSize(); i++) {
+      out += "\n\t";
       out += hand.get(i).toString();
-      out += "\n";
     }
-    out += hand.get(getHandSize()-1) + "]";
-    out += "  = " + getHandValue();
+    out += "\n] value = " + getHandValue();
     return out;
     //return "hand = " + hand.toString() + " \n-  # wins " + winCount;
   }

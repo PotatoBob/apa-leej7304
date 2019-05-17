@@ -33,10 +33,6 @@ public class BlackJack
 
 	public void playGame()
 	{
-		//TODO: add BLACKJACKS what are you doing???!
-		//TODO: add separate win condition for blackjack (combines with gambling later)
-		//TODO: add BLACKJACK check for dealer, not just player
-		//TODO: having BLACKJACK skips the player hit/stand loop
 		//TODO: make dealer hit on soft 17, otherwise hit on 16
 		//TODO: expose one of dealer's cards in beginning, but not both???
 		//TODO: add gambling???
@@ -47,6 +43,7 @@ public class BlackJack
 		    dealer.shuffle();
 		    player.resetHand();
 		    dealer.resetHand();
+		    dealer.setDealerTurn(false);
 
 		    hit = true;
 
@@ -55,12 +52,14 @@ public class BlackJack
 
 		    dealer.addCardToHand(dealer.deal());
 		    dealer.addCardToHand(dealer.deal());
-		    //we don't know dealer's hand until after player finishes
+		    //we only know 1 card of the dealer's hand until the player's turn finishes
 
 		    System.out.println("Player Hand:\n" + player);
+		    System.out.println("Dealer Hand:\n" + dealer);
 
 		    if(player.getHandValue() == 21) {
 		    	System.out.println("BLACKJACK!");
+		    	dealer.setDealerTurn(true);
 			    System.out.println("\nDealer's Hand:\n" + dealer);
 			    if(dealer.getHandValue() == 21)
 			    	System.out.println("It's a tie! You both got BLACKJACK!");
@@ -85,6 +84,7 @@ public class BlackJack
 			    	System.out.println("Shucks! You busted! Dealer wins!");
 			    	dealerWins++;
 			    } else {
+			    	dealer.setDealerTurn(true);
 				    System.out.println("\nDealer's Hand:\n" + dealer);
 				    Card temp = null;
 				    while(dealer.getHandValue() < 17) { // later implement dealer hit on "soft" 17 (A + 6)
