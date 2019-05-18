@@ -11,10 +11,6 @@ import java.util.ArrayList;
 
 public class BlackJack
 {
-	//add in Player instance variable
-	//add in Dealer instance variable
-	// private Player player;
-	// private Dealer dealer;
 	private ArrayList<Playerable> players;
 
 
@@ -28,9 +24,6 @@ public class BlackJack
 	    Scanner keyboard = new Scanner(System.in);
 		// boolean hit = true;
 		boolean continueGame = true;
-
-		int playerWins = 0;
-		int dealerWins = 0;
 
 		System.out.print("How many players :: ");
 		int numPlayers = keyboard.nextInt();
@@ -48,10 +41,6 @@ public class BlackJack
 		}
 
 	    while(continueGame) {
-		    // dealer.shuffle();
-		    // player.resetHand();
-		    // dealer.resetHand();
-		    // dealer.setDealerTurn(false);
 	    	((Dealer)players.get(0)).shuffle();
 	    	for(Playerable p : players) {
 	    		p.resetHand();
@@ -67,11 +56,6 @@ public class BlackJack
 	    		busted[i] = false;
 	    	}
 
-		    // player.addCardToHand(dealer.deal());
-		    // player.addCardToHand(dealer.deal());
-
-		    // dealer.addCardToHand(dealer.deal());
-		    // dealer.addCardToHand(dealer.deal());
 			for(int i = numPlayers; i >= 0; i--) {
 				players.get(i).addCardToHand(((Dealer)players.get(0)).deal());
 				players.get(i).addCardToHand(((Dealer)players.get(0)).deal());
@@ -79,11 +63,9 @@ public class BlackJack
 
 		    //we only know 1 card of the dealer's hand until the player's turn finishes
 
-		    // System.out.println("Player Hand:\n" + player);
 		    for(int i = 1; i <= numPlayers; i++) {
 		    	System.out.println("Player " + i + " Hand:\n" + (Player)players.get(i));
 		    }
-		    // System.out.println("Dealer Hand:\n" + dealer);
 		    System.out.println("Dealer Hand:\n" + (Dealer)players.get(0));
 
 		    for(int i = numPlayers; i >= 0; i--) {
