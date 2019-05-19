@@ -62,6 +62,13 @@ public class AlienHorde
     }
   }
 
+  public boolean gameOver()
+  {
+    if(aliens.get(0).getY() + aliens.get(0).getHeight() > 575)
+      return true;
+    return false;
+  }
+
   public int getSize()
   {
     return aliens.size();

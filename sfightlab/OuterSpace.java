@@ -9,6 +9,7 @@ import java.awt.Canvas;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import java.awt.Font;
 import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
@@ -17,11 +18,14 @@ import java.util.ArrayList;
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
   private Ship ship;
+  private final int FONT_SIZE = 100;
 
   /* uncomment once you are ready for this part
    **/
    private AlienHorde horde;
    private Bullets shots;
+
+   private int love; //determines endgame
   
 
   private boolean[] keys;
@@ -39,6 +43,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     ship = new Ship(400,300,30,30,5);
     horde = new AlienHorde(20);
     shots = new Bullets();
+
+  	love = 0;
 
     this.addKeyListener(this);
     new Thread(this).start();
@@ -99,6 +105,26 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
     horde.removeDeadOnes(shots.getList());
     horde.moveEmAll();
     horde.drawEmAll(graphToBack);
+
+    if(horde.getSize() == 0) {
+	    graphToBack.setColor(Color.BLACK);
+	    graphToBack.fillRect(0,0,800,600);
+	    graphToBack.setColor(Color.GREEN);
+	    graphToBack.setFont(new Font("SansSerif", Font.BOLD, FONT_SIZE));
+	    graphToBack.drawString("YOU WON!", 10, 300 );
+	    ship = new Ship(550, 200, 120, 120, 0);
+	    ship.draw(graphToBack);
+	    love = 3000;
+    } else if(horde.gameOver()) {
+	    graphToBack.setColor(Color.BLACK);
+	    graphToBack.fillRect(0,0,800,600);
+	    graphToBack.setColor(Color.RED);
+	    graphToBack.setFont(new Font("SansSerif", Font.BOLD, FONT_SIZE));
+	    graphToBack.drawString("YOU LOST!", 10, 300 );
+	    Alien alien = new Alien(550, 200, 120, 120, 0);
+	    alien.draw(graphToBack);
+	    love = 3000;
+    }
 
     twoDGraph.drawImage(back, null, 0, 0);
   }
@@ -166,6 +192,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
       {
         Thread.currentThread().sleep(5);
         repaint();
+        if(3000 == love)
+        	break;
       }
     }catch(Exception e)
     {
